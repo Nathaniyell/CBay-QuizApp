@@ -1,5 +1,5 @@
 // Set the API URL to fetch the questions from
-const apiUrl = 'https://opentdb.com/api.php?amount=20&category=21';
+const apiUrl = 'https://opentdb.com/api.php?amount=10&category=21';
 
 // Initialize variables
 let shuffledData = [];
@@ -14,3 +14,20 @@ const questionElement = questionContainer.querySelector('.question');
 const buttonDiv = questionContainer.querySelector('.button-div');
 const nextButton = questionContainer.querySelector('.next-button');
 const restartButton = questionContainer.querySelector('.restart-button');
+
+// Function to fetch questions from the API
+function fetchQuestions() {
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Shuffle the received questions
+      shuffledData = shuffle(data.results);
+      // Extract the correct answers from the shuffled questions
+      correctAnswers = shuffledData.map(question => question.correct_answer);
+      // Show the first question
+      showQuestion();
+    })
+    .catch(error => {
+      console.error('Error fetching questions:', error);
+    });
+}
