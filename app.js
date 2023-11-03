@@ -80,3 +80,12 @@ function handleAnswer(selectedAnswer) {
   } else {
     questionContainer.classList.add('wrong');
   }
+   // Disable all answer buttons
+  const buttons = buttonDiv.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.disabled = true;
+  });
+
+  // Show the next button
+  nextButton.style.display = 'inline-block';
+}
