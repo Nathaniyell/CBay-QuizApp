@@ -31,3 +31,16 @@ function fetchQuestions() {
       console.error('Error fetching questions:', error);
     });
 }
+
+// Function to shuffle an array
+function shuffle(array) {
+  const shuffledArray = [];
+
+  while (array.length > 0) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    const randomElement = array.splice(randomIndex, 1)[0];
+    shuffledArray.push(randomElement);
+  }
+
+  return shuffledArray;
+}
