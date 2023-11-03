@@ -105,3 +105,52 @@ function nextQuestion() {
     showResult();
   }
 }
+// Function to restart the quiz
+function restartQuiz() {
+  // Reset variables and fetch new questions
+  currentQuestionIndex = 0;
+  correctAnswers = [];
+  score = 0;
+  fetchQuestions();
+}
+
+// Add event listeners to the next and restart buttons
+nextButton.addEventListener('click', nextQuestion);
+restartButton.addEventListener('click', restartQuiz);
+
+// Function to display the result after answering all questions
+function showResult() {
+  // Clear the question container
+  questionContainer.innerHTML = '';
+
+  // Calculate the total score
+  const totalScore = calculateScore();
+  console.log('Total Score:', totalScore);
+
+  // Create a result element to display the score
+  const resultElement = document.createElement('div');
+  resultElement.classList.add('result');
+  resultElement.textContent = `Your score: ${totalScore}%`;
+  questionContainer.appendChild(resultElement);
+
+  // Show the restart button if the score is less than 70%
+  if (parseFloat(totalScore) < 70) {
+    restartButton.style.display = 'inline-block';
+  } else {
+    // Create a congratulations element if the score is 70% or higher
+    const congratulationsElement = document.createElement('div');
+    congratulationsElement.classList.add('congratulations');
+    congratulationsElement.textContent = 'Congratulations!';
+    questionContainer.appendChild(congratulationsElement);
+  }
+}
+
+// Function to calculate the score
+function calculateScore() {
+  const totalScore = (score / correctAnswers.length) * 100;
+  return totalScore.toFixed(2)
+}
+
+// Fetch questions to start the quiz
+fetchQuestions();
+
