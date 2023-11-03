@@ -69,3 +69,14 @@ function showQuestion() {
   nextButton.style.display = 'none';
   restartButton.style.display = 'none';
 }
+// Function to handle a user's answer
+function handleAnswer(selectedAnswer) {
+  const isCorrectAnswer = correctAnswers.includes(selectedAnswer);
+
+  // Increase the score and add CSS class based on correctness
+  if (isCorrectAnswer) {
+    score++;
+    questionContainer.classList.add('correct');
+  } else {
+    questionContainer.classList.add('wrong');
+  }
