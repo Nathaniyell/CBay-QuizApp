@@ -44,3 +44,28 @@ function shuffle(array) {
 
   return shuffledArray;
 }
+// Function to display a question
+function showQuestion() {
+  const currentQuestion = shuffledData[currentQuestionIndex];
+  numberElement.textContent = currentQuestionIndex + 1;
+  questionElement.textContent = currentQuestion.question;
+  buttonDiv.innerHTML = '';
+
+  // Combine incorrect and correct answers, then shuffle them
+  const answers = [...currentQuestion.incorrect_answers, currentQuestion.correct_answer];
+  const shuffledAnswers = shuffle(answers);
+
+  // Create buttons for each shuffled answer
+  shuffledAnswers.forEach(answer => {
+    const button = document.createElement('button');
+    button.textContent = answer;
+    buttonDiv.appendChild(button);
+    button.addEventListener('click', () => {
+      handleAnswer(answer);
+    });
+  });
+
+  // Hide the next button and restart button
+  nextButton.style.display = 'none';
+  restartButton.style.display = 'none';
+}
