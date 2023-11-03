@@ -115,6 +115,8 @@ function restartQuiz() {
 }
 
 // Add event listeners to the next and restart buttons
+nextButton.style.display = "block";
+restartButton.style.display = "block";
 nextButton.addEventListener('click', nextQuestion);
 restartButton.addEventListener('click', restartQuiz);
 
